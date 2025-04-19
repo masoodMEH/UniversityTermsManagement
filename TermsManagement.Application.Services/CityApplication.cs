@@ -1,4 +1,5 @@
-﻿using TermsManagement.Application.Contract.CityApplication;
+﻿using _Utilities.Enums;
+using TermsManagement.Application.Contract.CityApplication;
 using TermsManagement.Domain.CityEntity;
 using TermsManagement.Domain.Repository;
 
@@ -8,17 +9,22 @@ public class CityApplication : ICityApplication
 {
     private readonly ICityRepository? _cityRepository;
 
+    public CityApplication(ICityRepository? cityRepository)
+    {
+        _cityRepository = cityRepository;
+    }
+
     public bool Create(CreateCityModel command)
     {
-        City city = new(command.StateId, command.Title!);
+        City city = new(command.StateId, command.Title!,command.Status);
         return _cityRepository!.Create(city);
     }
 
 
-    public bool Edit(CreateCityModel command)
+    public bool Edit(EditCityModel command)
     {
-        var city = _cityRepository!.GetById(command.StateId);
-        city.Edit(command.Title!);
+        var city = _cityRepository!.GetById(command.Id);
+        city.Edit(command.Title!,command.Status);
         return _cityRepository.Save();
     }
 
@@ -29,22 +35,8 @@ public class CityApplication : ICityApplication
         _cityRepository!.ExistBy(key => key.Title == title && key.StateId == stateId && key.Id != id);
 
     public List<CityViewModel> GetAllForState(int stateId) =>
-        _cityRepository!.GetAllBy(c => c.StateId == stateId).Select(c => new CityViewModel
-        {
-            Id = c.Id,
-            Center = c.Center,
-            CreateDate = c.CreateDate.ToString(),
-            Tehran = c.Tehran,
-            Title = c.Title,
-        }).ToList();
+        _cityRepository.GetAllForState(stateId);
 
-    public EditCityModel GetCityForEdit(int id)
-    {
-        var city = _cityRepository?.GetById(id);
-        return new()
-        {
-            Id = city.Id,
-            Title = city.Title,
-        };
-    }
+    public EditCityModel GetCityForEdit(int id)=>
+        _cityRepository!.GetCityForEdit (id);
 }

@@ -33,6 +33,12 @@ public class GenericRepository<TKey, T> : IGenericRepository<TKey, T> where T : 
     public IEnumerable<T> GetAllBy(Expression<Func<T, bool>> expression) =>
         _context.Set<T>().Where(expression).ToList();
 
+    public IQueryable<T> GetAllQuery() =>
+        _context.Set<T>();
+
+    public IQueryable<T> GetAllByQuery(Expression<Func<T, bool>> expression) =>
+        _context.Set<T>().Where(expression);
+
     public T GetById(TKey id) =>
         _context.Find<T>(id);
 

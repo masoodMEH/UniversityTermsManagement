@@ -6,4 +6,9 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\TermsManagement.Application.Contract\TermsManagement.Application.Contract.csproj" />
+	  <ProjectReference Include="..\_Utilities\_Utilities.csproj" />
+	</ItemGroup>
+
 </Project>

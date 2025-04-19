@@ -33,20 +33,10 @@ public class StateApplication : IStateApplication
         _stateRepository!.ExistBy(key => key.Title == title && key.Id != id);
 
     public List<StateViewModel>? GetAll() =>
-        _stateRepository?.GetAll().Select(key => new StateViewModel
-        {
-            Id = key.Id,
-            CreateDate = key.CreateDate.ToString(),
-            Title = key.Title
-        }).ToList();
+        _stateRepository?.GetAllStateViewModel ();
 
     public EditStateModel GetStateForEdit(int id)
     {
-        var state = _stateRepository.GetById(id);
-        return new()
-        {
-            Id = state.Id,
-            Title = state.Title
-        };
+        return _stateRepository?.GetStateForEdit(id);
     }
 }

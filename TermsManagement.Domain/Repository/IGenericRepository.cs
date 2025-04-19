@@ -6,6 +6,8 @@ public interface IGenericRepository<TKey, T> where T : class
 {
     IEnumerable<T> GetAll();
     IEnumerable<T> GetAllBy(Expression<Func<T, bool>> expression);
+    IQueryable<T> GetAllQuery();
+    IQueryable<T> GetAllByQuery(Expression<Func<T, bool>> expression);
     T GetById(TKey id);
     bool Create(T Entity);
     bool Delete(T Entity);
