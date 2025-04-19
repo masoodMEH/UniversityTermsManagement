@@ -4,7 +4,7 @@ using TermsManagement.Domain.StateEntity;
 
 namespace TermsManagement.Application.Services;
 
-public class StateApplication : IStateApplication
+internal class StateApplication : IStateApplication
 {
     private readonly IStateRepository? _stateRepository;
 

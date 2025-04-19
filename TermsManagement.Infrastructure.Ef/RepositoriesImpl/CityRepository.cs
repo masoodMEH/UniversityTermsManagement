@@ -4,7 +4,7 @@ using TermsManagement.Domain.Repository;
 
 namespace TermsManagement.Infrastructure.Ef.RepositoriesImpl;
 
-public class CityRepository : GenericRepository<int, City>, ICityRepository
+internal class CityRepository : GenericRepository<int, City>, ICityRepository
 {
     private readonly TermsManagement_Context _context;
 

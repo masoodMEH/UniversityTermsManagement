@@ -5,7 +5,7 @@ using TermsManagement.Domain.Repository;
 
 namespace TermsManagement.Application.Services;
 
-public class CityApplication : ICityApplication
+ internal class CityApplication : ICityApplication
 {
     private readonly ICityRepository? _cityRepository;
 

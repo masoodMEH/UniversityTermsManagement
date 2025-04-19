@@ -5,11 +5,8 @@ using TermsManagement.Infrastructure.Ef.Mappings;
 
 namespace TermsManagement.Infrastructure.Ef;
 
-public class TermsManagement_Context : DbContext
+public class TermsManagement_Context(DbContextOptions<TermsManagement_Context> options) : DbContext(options)
 {
-    public TermsManagement_Context(DbContextOptions<TermsManagement_Context> options) : base(options)
-    {
-    }
     public DbSet<State> States { get; set; }
     public DbSet<City> Cities { get; set; }
 

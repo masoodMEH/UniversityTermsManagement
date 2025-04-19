@@ -13,8 +13,8 @@ public class StateMapping : IEntityTypeConfiguration<State>
 
         builder.Property(key => key.Title).IsRequired(true).HasMaxLength(150);
         builder.Property(key => key.CloseStates).IsRequired(false).HasMaxLength(100);
-        builder.Property(key => key.CreateDate).IsRequired(true);
 
-        builder.HasMany(model => model.Cities).WithOne(key => key.State).HasForeignKey(key => key.StateId);
+        builder.HasMany(model => model.Cities).WithOne(key => key.State)
+            .HasForeignKey(key => key.StateId);
     }
 }

@@ -4,7 +4,7 @@ using TermsManagement.Domain.StateEntity;
 
 namespace TermsManagement.Infrastructure.Ef.RepositoriesImpl;
 
-public class StateRepository : GenericRepository<int, State>, IStateRepository
+internal class StateRepository : GenericRepository<int, State>, IStateRepository
 {
     private readonly TermsManagement_Context _context;
 
